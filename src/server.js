@@ -4,7 +4,7 @@ import { stages, getStage } from './stages.js'
 const main = async () => {
   try {
     const venombot = await VenomBot.getInstance().init({
-      session: 'Delícias da Neide',
+      session: 'Ponto do lanche',
       headless: true,
       useChrome: false,
     })
@@ -13,7 +13,7 @@ const main = async () => {
       if (message.isGroupMsg) return
 
       const currentStage = getStage({ from: message.from })
-
+      console.log(message.notifyName)
       await stages[currentStage].stage.exec({
         from: message.from,
         message: message.body,

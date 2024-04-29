@@ -34,12 +34,28 @@ export const stageOne = {
 
 const options = {
   1: () => {
+    const sanduiches = [];
+    const bebidas = [];
+    const adicionais = [];
+
     let message = '🚨  CARDÁPIO  🚨\n\n'
 
     Object.keys(menu).forEach((value) => {
-      message += `${numbers[value]} - _${menu[value].description}_ \n`
-    })
+      // Verificar a categoria de cada item e adicioná-lo ao vetor correspondente
+      if (menu[value].category === 'sanduiche') {
+        sanduiches.push(`${numbers[value]} ${menu[value].description} - _R$${menu[value].price}_`);
+      } else if (menu[value].category === 'bebida') {
+        bebidas.push(`${numbers[value]} ${menu[value].description} - _R$${menu[value].price}_`);
+      } else if (menu[value].category === 'adicional') {
+        adicionais.push(`${numbers[value]} ${menu[value].description} - _R$${menu[value].price}_`);
+      }
+    });
 
+    message += '*SANDUICHES*\n' + sanduiches.join('\n') + '\n\n';
+    message += '*BEBIDAS*\n' + bebidas.join('\n') + '\n\n';
+    message += '*ADICIONAIS*\n' + adicionais.join('\n') + '\n\n';
+
+    message += '\n```APENAS UMA OPÇÃO POR VEZ```'
     return {
       message,
       nextStage: STAGES.CARRINHO,
@@ -47,9 +63,9 @@ const options = {
   },
   2: () => {
     const message =
-      '\n-----------------------------------\n1️⃣ - ```FAZER PEDIDO``` \n0️⃣ - ```FALAR COM ATENDENTE```\n\n' +
+      '\n-----------------------------------\n📍 Valores\n' +
       neighborhoods +
-      '\n-----------------------------------\n1️⃣ - ```FAZER PEDIDO``` \n0️⃣ - ```FALAR COM ATENDENTE``` '
+      '\n-----------------------------------\n '
 
     return {
       message,
@@ -71,4 +87,9 @@ const numbers = {
   3: '3️⃣',
   4: '4️⃣',
   5: '5️⃣',
+  6: '6️⃣',
+  7: '7️⃣',
+  8: '8️⃣',
+  9: '9️⃣',
+  10: '1️⃣0️⃣'
 }
