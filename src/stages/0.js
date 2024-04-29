@@ -16,6 +16,7 @@ export const initialStage = {
       1️⃣ - FAZER PEDIDO
       2️⃣ - VERIFICAR TAXA DE ENTREGA
       0️⃣ - FALAR COM ATENDENTE
+      1️⃣0️⃣
     `
     await venombot.sendText({ to: from, message })
   },
