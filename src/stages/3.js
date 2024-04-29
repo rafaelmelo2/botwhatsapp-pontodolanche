@@ -14,12 +14,12 @@ export const stageThree = {
       const itens = storage[from].itens
       const itensPedidos = itens.map((item) => item.description).join(', ')
 
-      const total = storage[from].itens.length
+      const total = itens.reduce((acc, item) => acc + item.price, 0);
 
       msg =
         `🗒️ *RESUMO DO PEDIDO*: \n\n🍔 Itens: *${itensPedidos}* \n🚚 Taxa de entrega: *a confirmar*. \n📍 Endereço: *${message}* \n💰 Valor do pedido: *${
-          total * 6
-        },00 reais*. \n⏳ Tempo de entrega: *30 minutos*. \n\n` +
+          total 
+        } reais*. \n⏳ Tempo de entrega: *30 minutos*. \n\n` +
         '🔊 ```Agora, informe a forma de pagamento e se vai precisar de troco, por gentileza.```'
     }
 

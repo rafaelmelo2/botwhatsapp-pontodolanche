@@ -43,6 +43,7 @@ const options = {
     Object.keys(menu).forEach((value) => {
       // Verificar a categoria de cada item e adicioná-lo ao vetor correspondente
       if (menu[value].category === 'sanduiche') {
+        console.log(`${numbers[value]} ${menu[value].description} - _R$${menu[value].price}_`)
         sanduiches.push(`${numbers[value]} ${menu[value].description} - _R$${menu[value].price}_`);
       } else if (menu[value].category === 'bebida') {
         bebidas.push(`${numbers[value]} ${menu[value].description} - _R$${menu[value].price}_`);

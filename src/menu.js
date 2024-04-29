@@ -27,7 +27,7 @@ export const menu = {
   },
 
   // BEBIDAS
-  9: {
+  6: {
     description: 'Coca 600ml',
     price: 7,
     category: 'bebida'
