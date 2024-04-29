@@ -14,7 +14,7 @@ export class VenomBot {
     this.#session = session
     this.#venombot = await create({
       session,
-      headless:'new',
+      headless,
       useChrome,
       multidevice: false,
     })
