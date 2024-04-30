@@ -1,5 +1,7 @@
 import { VenomBot } from './venom.js'
 import { stages, getStage } from './stages.js'
+import http from 'http'; // Importe o módulo http
+
 
 const main = async () => {
   try {
@@ -24,4 +26,18 @@ const main = async () => {
   }
 }
 
-main()
+
+const PORT = process.env.PORT || 3000; // Defina a porta do servidor, ou use a porta 3000 se não estiver definida
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Servidor rodando\n');
+});
+
+server.listen(PORT, () => {
+  console.log(`Servidor HTTP rodando na porta ${PORT}`);
+  main()
+});
+
+
+
