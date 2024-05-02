@@ -40,7 +40,8 @@ const main = async () => {
   try {
     const venombot = await VenomBot.getInstance().init({
       session: 'Ponto do lanche',
-      headless: true,
+      headless: 'shell',
+      args: ['--enable-gpu'],
       useChrome: false,
     });
 
