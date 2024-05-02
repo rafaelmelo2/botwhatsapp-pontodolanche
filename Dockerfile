@@ -4,6 +4,9 @@ FROM node:latest
 # Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
+# Instale a biblioteca libnss3
+RUN apt-get update && apt-get install -y libnss3
+
 # Copie o arquivo package.json e o arquivo package-lock.json (se existir) para o diretório de trabalho
 COPY package*.json ./
 
