@@ -6,24 +6,31 @@ export const stageFour = {
   async exec({ from, message }) {
     const address = storage[from].address
     const phone = from.split('@')
+    storage[from].details = message
 
-    storage[from].stage = STAGES.FALAR_COM_ATENDENTE
+    storage[from].stage = STAGES.CONFIRMAR
 
-    storage[from].finalStage = {
-      startsIn: new Date().getTime(),
-      endsIn: new Date().setSeconds(60), // 1 minute of inactivity
+    
+    let msg = '🔴 Pedido *CANCELADO* com sucesso. \n Volte Sempre!'
+    if (message === '*'|| message.trim().toUpperCase() === 'ENCERRAR') {
+      storage[from].stage = STAGES.INICIAL
+    } else {
+      console.log("teste")
+      const itens = storage[from].itens
+      const orders = itens.map((item) => item.description).join(', ')
+      const total = itens.reduce((acc, item) => acc + item.price, 0);
+
+      msg = `🔔 *NOVO PEDIDO* 🔔: \n\n
+        📞 Cliente: +${phone[0]}\n 
+        🍔 Pedido: *${orders}*\n 
+        📍 Endereço: *${address}*\n 
+        🚚 Taxa de entrega: *a confirmar*.\n 
+        💰 Valor total: *${total} reais*.\n 
+        ⏳ Tempo médio de entrega: *30 minutos*.\n 
+        🛑 Detalhes: *${message}*\n\n`+
+        '```🔊 Digite "OK" para confirmar seu pedido```'+
+        '\n-----------------------------------\n*️⃣ - ```CANCELAR pedido```'
     }
-
-    const itens = storage[from].itens
-    const desserts = itens.map((item) => item.description).join(', ')
-    const total = storage[from].itens.length
-
-    const msg = `🔔 *NOVO PEDIDO* 🔔: \n\n📞 Cliente: +${
-      phone[0]
-    } \n🧁 Sabores: *${desserts}* \n📍 Endereço: *${address}* \n🚚 Taxa de entrega: *a confirmar*. \n💰 Valor dos bolos: *${
-      total * 6
-    },00 reais*. \n⏳ Tempo médio de entrega: *30 minutos*. \n🛑 Detalhes: *${message}*\n `+'```🔊 Confirme seu pedido````'
-
     await VenomBot.getInstance().sendText({ to: from, message: msg })
   },
 }

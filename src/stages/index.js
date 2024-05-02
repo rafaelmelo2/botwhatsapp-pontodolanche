@@ -4,6 +4,7 @@ export * from './2.js'
 export * from './3.js'
 export * from './4.js'
 export * from './5.js'
+export * from './6.js'
 
 export const STAGES = {
   INICIAL: '0',
@@ -11,5 +12,6 @@ export const STAGES = {
   CARRINHO: '2',
   RESUMO: '3',
   PEDIDO: '4',
-  FALAR_COM_ATENDENTE: '5',
+  CONFIRMAR: '5',
+  ATENDENTE: '6',
 }

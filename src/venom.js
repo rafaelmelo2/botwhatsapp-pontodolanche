@@ -15,7 +15,7 @@ export class VenomBot {
     this.#venombot = await create({
       session,
       headless,
-      useChrome,
+      // useChrome,
       multidevice: false,
     })
 
@@ -37,19 +37,35 @@ export class VenomBot {
   }
 
   // Is not working
-  // async sendButtons({ to, title, buttons, description }) {
-  //   if (!this.#venombot) throw new Error('VenomBot not initialized.')
+  async sendButtons({ to, title, buttons, description }) {
+    if (!this.#venombot) throw new Error('VenomBot not initialized.')
 
-  //   return await this.#venombot.sendButtons(
-  //     to,
-  //     title,
-  //     buttons,
-  //     description,
-  //   )
-  // }
+    return await this.#venombot.sendButtons(
+      to,
+      title,
+      description,
+      buttons,
+    )
+  }
 
   async markUnseenMessage({ to }) {
     if (!this.#venombot) throw new Error('VenomBot not initialized.')
     return await this.#venombot.markUnseenMessage(to)
   }
+
+  async sendLocation({ to, coordX, coordY, country}) {
+    if (!this.#venombot) throw new Error('VenomBot not initialized.')
+    return await this.#venombot.sendLocation(to, coordX, coordY, country)
+  }
+
+  async getGroups() {
+    if (!this.#venombot) throw new Error('VenomBot not initialized.')
+    return await this.#venombot.getAllChatsGroups()
+  }
+
+  async sendFile({ to, path, file_name, description}) {
+    if (!this.#venombot) throw new Error('VenomBot not initialized.')
+    return await this.#venombot.sendFile(to, path, file_name, description)
+  }
+  
 }

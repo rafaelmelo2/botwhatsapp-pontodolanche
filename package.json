@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "babel": "^6.23.0",
+    "date-fns": "^3.6.0",
     "puppeteer-core": "^22.7.1",
     "venom-bot": "^5.0.20"
   }
