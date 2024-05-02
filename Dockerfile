@@ -5,7 +5,7 @@ FROM node:latest
 WORKDIR /app
 
 # Instale a biblioteca libnss3
-RUN apt-get update && apt-get install -y libnss3 libdbus-1-3
+RUN apt-get update && apt-get install -y libnss3 libdbus-1-3 libatk1.0-0
 
 # Copie o arquivo package.json e o arquivo package-lock.json (se existir) para o diretório de trabalho
 COPY package*.json ./
