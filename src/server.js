@@ -22,7 +22,7 @@ const resetStageAfterTimeout = async (from) => {
 // Função para processar a mensagem
 const processMessage = async (message) => {
   if (message.isGroupMsg) return;
-
+  console.log(message.notifyName);
   const from = message.from;
   const currentStage = getStage({ from });
   await stages[currentStage].stage.exec({
